@@ -1,4 +1,7 @@
+import 'package:canvas_lms/screen/DashboardScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:sizer/sizer.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,110 +12,170 @@ class MyApp extends StatelessWidget {
   final appTitle = 'Flutter drawer demo';
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: appTitle),
+    // return MaterialApp(
+    //   title: appTitle,
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //   ),
+    //   home: SidebarMenu(),
+    // );
+    //
+    return LayoutBuilder(
+      //return LayoutBuilder
+      builder: (context, constraints) {
+        return OrientationBuilder(
+          //return OrientationBuilder
+          builder: (context, orientation) {
+            //initialize SizerUtil()
+            SizerUtil().init(constraints, orientation); //initialize SizerUtil
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: appTitle,
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
+              home: SidebarMenu(),
+            );
+          },
+        );
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedDestination = 0;
-
+// ignore: must_be_immutable
+class SidebarMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Canvas LMS',
-                style: textTheme.headline6,
-              ),
+    return AdminScaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Canvas LMS'),
+        ),
+        sideBar: SideBar(
+          items: const [
+            MenuItem(
+              title: 'Account',
+              icon: Icons.account_circle,
+              children: [
+                MenuItem(
+                    title: 'Notifications',
+                    route: '/secondLevelItem1',
+                    icon: Icons.notifications),
+                MenuItem(
+                    title: 'Profile',
+                    route: '/secondLevelItem2',
+                    icon: Icons.person_outline_outlined),
+              ],
             ),
-            Divider(
-              height: 1,
-              thickness: 1,
+            MenuItem(
+              title: 'Dashboard',
+              route: '/',
+              icon: Icons.dashboard,
             ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Account'),
-              selected: _selectedDestination == 0,
-              onTap: () => selectDestination(0),
+            MenuItem(
+              title: 'Courses',
+              route: '/',
+              icon: Icons.menu_book,
             ),
-            ListTile(
-              leading: Icon(Icons.dashboard),
-              title: Text('Courses'),
-              selected: _selectedDestination == 1,
-              onTap: () => selectDestination(1),
+            MenuItem(
+              title: 'Calendar',
+              route: '/',
+              icon: Icons.calendar_today,
             ),
-            ListTile(
-              leading: Icon(Icons.calendar_today),
-              title: Text('Calendar'),
-              selected: _selectedDestination == 2,
-              onTap: () => selectDestination(2),
+            MenuItem(
+              title: 'Inbox',
+              route: '/',
+              icon: Icons.email,
             ),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Text('Inbox'),
-              selected: _selectedDestination == 3,
-              onTap: () => selectDestination(3),
+            MenuItem(
+              title: 'History',
+              route: '/',
+              icon: Icons.history,
             ),
-            ListTile(
-              leading: Icon(Icons.history),
-              title: Text('History'),
-              selected: _selectedDestination == 4,
-              onTap: () => selectDestination(4),
-            ),
-            ListTile(
-              leading: Icon(Icons.bookmark),
-              title: Text('Commons'),
-              selected: _selectedDestination == 5,
-              onTap: () => selectDestination(5),
-            ),
-            ListTile(
-              leading: Icon(Icons.help_outline),
-              title: Text('Help'),
-              selected: _selectedDestination == 6,
-              onTap: () => selectDestination(6),
+            MenuItem(
+              title: 'Help',
+              route: '/',
+              icon: Icons.help,
             ),
           ],
+          selectedRoute: '/',
+          onSelected: (item) {
+            Navigator.of(context).pushNamed(item.route);
+          },
+          // header: Container(
+          //   height: 50,
+          //   width: double.infinity,
+          //   color: Colors.black26,
+          //   child: Center(
+          //     child: Text(
+          //       'header2',
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          footer: Container(
+            height: 50,
+            width: double.infinity,
+            color: Colors.black26,
+            child: Center(
+              child: Text(
+                'Copyright',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  void selectDestination(int index) {
-    setState(() {
-      _selectedDestination = index;
-    });
+        body: Container(
+          color: Colors.white,
+          padding: EdgeInsets.all(20),
+          child: Row(children: [
+            Expanded(
+                flex: 7,
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Dashboard', style: TextStyle(fontSize: 20)),
+                        Divider(),
+                        Container(
+                          child: DashboardScreen(),
+                        ),
+                      ]),
+                )),
+            Expanded(
+                flex: 3,
+                child: Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          'To Do',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Divider(),
+                      Text('Nothing for now'),
+                      Container(
+                        child: Text(
+                          'Recent Feedback',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Divider(),
+                      Text('Nothing for now')
+                    ],
+                  ),
+                )),
+          ]),
+        ));
   }
 }

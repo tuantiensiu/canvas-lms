@@ -5,11 +5,12 @@ class Course {
   String name;
   String category;
   String imageUrl;
+  String content;
 
-  Course({
-    @required this.id,
-    @required this.name,
-    @required this.category,
-    @required this.imageUrl,
-  });
+  Course(
+      {@required this.id,
+      @required this.name,
+      @required this.category,
+      @required this.imageUrl,
+      @required this.content});
 }

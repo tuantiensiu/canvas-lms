@@ -1,4 +1,5 @@
 import 'package:canvas_lms/model/Course.dart';
+import 'package:canvas_lms/screen/CourseDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -11,17 +12,20 @@ class CourseList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('ksksks');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CourseDetails(this.item)));
       },
       child: Card(
           elevation: 2, //shadown
           child: Column(
             children: [
               Container(
-                  child: Image.asset(
-                'images/image-course.png',
-                fit: BoxFit.cover,
-              )),
+                child: Image.asset(
+                  item.imageUrl,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+              ),
               ListTile(
                 title: Text(
                   item.name,
