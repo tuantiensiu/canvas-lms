@@ -2,6 +2,9 @@ import 'package:canvas_lms/model/Course.dart';
 import 'package:canvas_lms/screen/ModuleDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+const _url = 'https://flutter.dev';
 
 class CourseDetails extends StatelessWidget {
   final Course item;
@@ -59,9 +62,17 @@ class CourseDetails extends StatelessWidget {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => ModuleDetail()),
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      FullScreenDialog(),
+                                  fullscreenDialog: true,
+                                ),
                               );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => ModuleDetail()),
+                              // );
                             }),
                         ListTile(
                           title: Text('Canvas Orientation'),
@@ -102,21 +113,35 @@ class CourseDetails extends StatelessWidget {
                 ),
               ],
             )
-            // Container(
-            //   child: Image.asset(
-            //     item.imageUrl,
-            //   ),
-            // ),
-            // Image.asset(
-            //   item.imageUrl,
-            //   alignment: Alignment.center,
-            //   width: 100,
-            //   height: 100,
-            //   fit: BoxFit.fitWidth,
-            // ),
           ],
         ),
       ),
     );
   }
 }
+
+class FullScreenDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF6200EE),
+        title: Text('Full-screen Dialog'),
+      ),
+      body: Container(
+          child: RaisedButton(
+        onPressed: _launchURL,
+        child: Text('data'),
+      )),
+    );
+  }
+}
+
+void _launchURL() async => await canLaunch(_url)
+    ? await launch(
+        _url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      )
+    : throw 'Could not launch $_url';

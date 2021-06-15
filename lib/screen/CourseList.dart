@@ -1,10 +1,11 @@
-import 'package:canvas_lms/model/Course.dart';
+// import 'package:canvas_lms/model/Course.dart';
+import 'package:canvas_lms/model/Courses.dart';
 import 'package:canvas_lms/screen/CourseDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CourseList extends StatelessWidget {
-  final Course item;
+  final Courses item;
 
   const CourseList({@required this.item});
 
@@ -21,7 +22,7 @@ class CourseList extends StatelessWidget {
             children: [
               Container(
                 child: Image.asset(
-                  item.imageUrl,
+                  'assets/images/image-course.png',
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
@@ -33,7 +34,7 @@ class CourseList extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  item.category,
+                  item.courseCode,
                   style: TextStyle(fontSize: 5.0.sp),
                   overflow: TextOverflow.ellipsis,
                 ),

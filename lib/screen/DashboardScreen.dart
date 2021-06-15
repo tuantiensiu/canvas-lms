@@ -1,27 +1,53 @@
+import 'dart:developer';
+
 import 'package:canvas_lms/model/Course.dart';
+import 'package:canvas_lms/model/Courses.dart';
+import 'package:canvas_lms/network/http_request.dart';
 import 'package:flutter/material.dart';
 
 import 'CourseList.dart';
 
 class DashboardScreen extends StatelessWidget {
-  List<Course> itemCourse;
+  // List<Course> itemCourse;
+  final HttpService httpService = HttpService();
+
   @override
   Widget build(BuildContext context) {
-    itemCourse = _itemCourse();
+    // itemCourse = _itemCourse();
     return _gridView();
   }
 
   Widget _gridView() {
-    return GridView.count(
-      crossAxisCount: 3,
-      padding: EdgeInsets.all(4.0),
-      childAspectRatio: 1.1, // scale card
-      children: itemCourse
-          .map(
-            (Course) => CourseList(item: Course),
-          )
-          .toList(),
+    return FutureBuilder(
+      future: httpService.getPosts(),
+      builder: (BuildContext context, AsyncSnapshot<List<Courses>> snapshot) {
+        if (snapshot.hasData) {
+          List<Courses> courses = snapshot.data;
+          return GridView.count(
+            crossAxisCount: 3,
+            padding: EdgeInsets.all(4.0),
+            childAspectRatio: 1.1, // scale card
+            children: courses
+                .map(
+                  (Courses) => CourseList(item: Courses),
+                )
+                .toList(),
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
     );
+    // return GridView.count(
+    //   crossAxisCount: 3,
+    //   padding: EdgeInsets.all(4.0),
+    //   childAspectRatio: 1.1, // scale card
+    //   children: itemCourse
+    //       .map(
+    //         (Course) => CourseList(item: Course),
+    //       )
+    //       .toList(),
+    // );
   }
 
   List<Course> _itemCourse() {

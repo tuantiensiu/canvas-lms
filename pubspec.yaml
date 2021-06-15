@@ -31,11 +31,17 @@ dependencies:
   flutter_admin_scaffold: ^0.0.5
   sizer: ^1.1.8
   http: ^0.13.1
+  hive_flutter: ^1.0.0
+  webviewx: ^0.0.4
+  url_launcher: ^6.0.3
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  hive_generator: ^1.1.0
+  build_runner: ^2.0.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
