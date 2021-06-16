@@ -13,8 +13,8 @@ class CourseList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => CourseDetails(this.item)));
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) => CourseDetails(this.item)));
       },
       child: Card(
           elevation: 2, //shadown
