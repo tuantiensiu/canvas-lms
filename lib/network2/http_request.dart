@@ -6,14 +6,14 @@ import 'dart:io';
 
 class HttpService {
   String token =
-      '2429~C80kUFp1PQ5ghFSFoe6PyabIx51QRaesLrRCVareSrRRoBF3lLpvYm32GMA8v8nQ';
-
-  final parameter = {
-    'enrollment_type': 'teacher',
-  };
-  Future<List<Courses>> getPosts() async {
+      '2429~AL5SK3q7WFyKfctlIpxt9QBMemvJv3BM0287UzxR7sox8Z2EgDUIjbPnjAVwVEbf';
+  static const String domain = 'masters.instructure.com';
+  Future<List<Courses>> getCourse() async {
+    final parameter = {
+      'enrollment_type': 'teacher',
+    };
     final res = await http.get(
-      Uri.https('masters.instructure.com', '/api/v1/courses', parameter),
+      Uri.https(domain, '/api/v1/courses', parameter),
       headers: {
         HttpHeaders.authorizationHeader: 'Bearer $token',
         HttpHeaders.contentTypeHeader: 'application/json',
@@ -21,7 +21,6 @@ class HttpService {
     );
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
-      print(jsonDecode(res.body));
       List<Courses> course = body
           .map(
             (dynamic item) => Courses.fromJson(item),

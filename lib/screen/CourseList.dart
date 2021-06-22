@@ -13,8 +13,8 @@ class CourseList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.push(context,
-        //     MaterialPageRoute(builder: (context) => CourseDetails(this.item)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CourseDetails(this.item)));
       },
       child: Card(
           elevation: 2, //shadown
@@ -22,7 +22,7 @@ class CourseList extends StatelessWidget {
             children: [
               Container(
                 child: Image.asset(
-                  'assets/images/image-course.png',
+                  'assets/images/course_card.png',
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
