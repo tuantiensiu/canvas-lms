@@ -1,11 +1,11 @@
-// import 'package:canvas_lms/model/Course.dart';
-import 'package:canvas_lms/model/Courses.dart';
+// import 'package:canvas_lms/model/Course.dart'i
+import 'package:canvas_lms/model/Dashboard.dart';
 import 'package:canvas_lms/screen/CourseDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CourseList extends StatelessWidget {
-  final Courses item;
+  final Dashboard item;
 
   const CourseList({@required this.item});
 
@@ -29,12 +29,12 @@ class CourseList extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  item.name,
+                  item.shortName,
                   style: TextStyle(fontSize: 8.0.sp),
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  item.courseCode,
+                  item.term,
                   style: TextStyle(fontSize: 5.0.sp),
                   overflow: TextOverflow.ellipsis,
                 ),

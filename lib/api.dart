@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:canvas_lms/model/Courses.dart';
+import 'package:canvas_lms/model/Dashboard.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
@@ -64,14 +65,39 @@ class HttpService {
     }
   }
 
-  Future<List<CalendarEvent>> getCalendarEvent(int courseId) async {
+  Future<List<Dashboard>> getDashboard() async {
+    final res = await http.get(
+      Uri.https(domain, '/api/v1/dashboard/dashboard_cards'),
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json',
+      },
+    );
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<Dashboard> dashboard = body
+          .map(
+            (dynamic item) => Dashboard.fromJson(item),
+          )
+          .toList();
+      return dashboard;
+    } else {
+      print(res.statusCode);
+
+      throw "Failed to load Dashboard";
+    }
+  }
+
+  Future<List<CalendarEvent>> getCalendarEvent(String courseId) async {
     final parameter = {
       'type': 'assignment',
       'all_events': 1,
-      'context_codes': 'course_$courseId',
+      'context_codes': '$courseId',
       'per_page': 50,
       'excludes': 'assignment',
     };
+    print(parameter);
+    print(courseId);
     final res = await http.get(
       Uri.https(domain, '/api/v1/calendar_events', parameter),
       headers: {
@@ -80,6 +106,7 @@ class HttpService {
       },
     );
     if (res.statusCode == 200) {
+      print('2221414');
       List<dynamic> body = jsonDecode(res.body);
       print(res.body);
       List<CalendarEvent> calendarEvent = body
@@ -87,7 +114,6 @@ class HttpService {
             (dynamic item) => CalendarEvent.fromJson(item),
           )
           .toList();
-      print(calendarEvent);
       return calendarEvent;
     } else {
       throw "Failed to load Calendar Event";

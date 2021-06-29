@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:canvas_lms/model/Course.dart';
 import 'package:canvas_lms/model/Courses.dart';
+import 'package:canvas_lms/model/Dashboard.dart';
 import 'package:flutter/material.dart';
 
 import '../api.dart';
@@ -16,17 +17,17 @@ class DashboardScreen extends StatelessWidget {
 
   Widget _gridView() {
     return FutureBuilder(
-      future: httpService.getCourse(),
-      builder: (BuildContext context, AsyncSnapshot<List<Courses>> snapshot) {
+      future: httpService.getDashboard(),
+      builder: (BuildContext context, AsyncSnapshot<List<Dashboard>> snapshot) {
         if (snapshot.hasData) {
-          List<Courses> courses = snapshot.data;
+          List<Dashboard> courses = snapshot.data;
           return GridView.count(
             crossAxisCount: 3,
             padding: EdgeInsets.all(4.0),
             childAspectRatio: 1.1, // scale card
             children: courses
                 .map(
-                  (Courses) => CourseList(item: Courses),
+                  (Dashboard) => CourseList(item: Dashboard),
                 )
                 .toList(),
           );
