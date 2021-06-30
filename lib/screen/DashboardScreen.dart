@@ -1,6 +1,4 @@
-import 'dart:developer';
 import 'package:canvas_lms/model/Course.dart';
-import 'package:canvas_lms/model/Courses.dart';
 import 'package:canvas_lms/model/Dashboard.dart';
 import 'package:flutter/material.dart';
 

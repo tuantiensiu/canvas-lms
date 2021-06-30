@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:canvas_lms/model/Courses.dart';
 import 'package:canvas_lms/model/Dashboard.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
@@ -11,59 +10,6 @@ class HttpService {
   static const String token =
       '2429~jSPYvbtjnCFXx6tOMjKJ96HoflZGjX23nUkoI0mIND2wO1Rx34q3rrWQrPzJ3VfI';
   static const String domain = 'masters.instructure.com';
-
-  Future<List<Courses>> getCourse() async {
-    final parameter = {
-      'enrollment_type': 'teacher',
-    };
-    final res = await http.get(
-      Uri.https(domain, '/api/v1/courses', parameter),
-      headers: {
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-        HttpHeaders.contentTypeHeader: 'application/json',
-      },
-    );
-    if (res.statusCode == 200) {
-      List<dynamic> body = jsonDecode(res.body);
-      List<Courses> course = body
-          .map(
-            (dynamic item) => Courses.fromJson(item),
-          )
-          .toList();
-
-      return course;
-    } else {
-      print(res.statusCode);
-
-      throw "Failed to load Course";
-    }
-  }
-
-  Future<List<Courses>> getCourse2() async {
-    final parameter = {
-      'enrollment_type': 'teacher',
-    };
-    final res = await http.get(
-      Uri.https(domain, '/api/v1/courses', parameter),
-      headers: {
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-        HttpHeaders.contentTypeHeader: 'application/json',
-      },
-    );
-    if (res.statusCode == 200) {
-      List<dynamic> body = jsonDecode(res.body);
-      List<Courses> course = body
-          .map(
-            (dynamic item) => Courses.fromJson(item),
-          )
-          .toList();
-      return course;
-    } else {
-      print(res.statusCode);
-
-      throw "Failed to load Course";
-    }
-  }
 
   Future<List<Dashboard>> getDashboard() async {
     final res = await http.get(
@@ -89,34 +35,31 @@ class HttpService {
   }
 
   Future<List<CalendarEvent>> getCalendarEvent(String courseId) async {
-    final parameter = {
+    Map<String, dynamic> parameter = {
       'type': 'assignment',
-      'all_events': 1,
-      'context_codes': '$courseId',
-      'per_page': 50,
-      'excludes': 'assignment',
+      'all_events': ['true'],
+      'context_codes[]': '$courseId',
     };
-    print(parameter);
-    print(courseId);
+
     final res = await http.get(
       Uri.https(domain, '/api/v1/calendar_events', parameter),
       headers: {
         HttpHeaders.authorizationHeader: 'Bearer $token',
-        HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
       },
     );
     if (res.statusCode == 200) {
-      print('2221414');
       List<dynamic> body = jsonDecode(res.body);
-      print(res.body);
-      List<CalendarEvent> calendarEvent = body
+      List<CalendarEvent> calendar = body
           .map(
             (dynamic item) => CalendarEvent.fromJson(item),
           )
           .toList();
-      return calendarEvent;
+      return calendar;
     } else {
-      throw "Failed to load Calendar Event";
+      print(res.statusCode);
+
+      throw "Failed to load detail calendar";
     }
   }
 }

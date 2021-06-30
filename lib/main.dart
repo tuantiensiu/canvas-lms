@@ -1,8 +1,4 @@
-import 'dart:io';
-
-import 'package:canvas_lms/screen/CourseDetails.dart';
 import 'package:canvas_lms/screen/DashboardPage.dart';
-import 'package:canvas_lms/screen/ModuleDetail.dart';
 import 'package:canvas_lms/screen/second_level_item_1_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';

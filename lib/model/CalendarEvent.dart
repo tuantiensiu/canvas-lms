@@ -85,7 +85,7 @@ class Assignment {
   String dueAt;
   String unlockAt;
   Null lockAt;
-  int pointsPossible;
+  double pointsPossible;
   String gradingType;
   int assignmentGroupId;
   Null gradingStandardId;
@@ -203,7 +203,7 @@ class Assignment {
     dueAt = json['due_at'];
     unlockAt = json['unlock_at'];
     lockAt = json['lock_at'];
-    pointsPossible = json['points_possible'];
+    pointsPossible = json['points_possible'].toDouble();
     gradingType = json['grading_type'];
     assignmentGroupId = json['assignment_group_id'];
     gradingStandardId = json['grading_standard_id'];
