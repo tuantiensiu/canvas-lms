@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:canvas_lms/model/Dashboard.dart';
+import 'package:canvas_lms/model/ModuleItems.dart';
 import 'package:canvas_lms/model/Modules.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
@@ -73,6 +74,25 @@ class HttpService {
       return module;
     } else {
       throw "Failed to load list modules";
+    }
+  }
+
+  Future<List<ModuleItems>> getListModuleItem(
+      int courseId, int moduleId) async {
+    final res = await http.get(
+      Uri.https(domain, '/api/v1/courses/$courseId/modules/$moduleId'),
+      headers: header,
+    );
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<ModuleItems> data = body
+          .map(
+            (dynamic itemModule) => ModuleItems.fromJson(itemModule),
+          )
+          .toList();
+      return data;
+    } else {
+      throw "Failed to load list modules item";
     }
   }
 }
