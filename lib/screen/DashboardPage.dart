@@ -15,7 +15,7 @@ class DashboardPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Dashboard', style: TextStyle(fontSize: 14.0.sp)),
+              Text('Danh sách khóa học', style: TextStyle(fontSize: 14.0.sp)),
               Divider(),
               Expanded(child: DashboardScreen())
             ],

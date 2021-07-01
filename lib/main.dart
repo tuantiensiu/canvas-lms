@@ -107,39 +107,39 @@ class MyScaffold extends StatelessWidget {
 
   final List<MenuItem> _sideBarItems = const [
     MenuItem(
-      title: 'Dashboard',
+      title: 'Trang Chủ',
       route: '/',
       icon: Icons.dashboard,
     ),
-    MenuItem(title: 'Course', route: '/course', icon: Icons.dashboard),
-    MenuItem(
-      title: 'Top Level',
-      icon: Icons.file_copy,
-      children: [
-        MenuItem(
-          title: 'Second Level Item 1',
-          route: '/secondLevelItem1',
-        ),
-        MenuItem(
-          title: 'Second Level Item 2',
-          route: '/secondLevelItem2',
-        ),
-        MenuItem(
-          title: 'Third Level',
-          children: [
-            MenuItem(
-              title: 'Third Level Item 1',
-              route: '/thirdLevelItem1',
-            ),
-            MenuItem(
-              title: 'Third Level Item 2',
-              route: '/thirdLevelItem2',
-              icon: Icons.image,
-            ),
-          ],
-        ),
-      ],
-    ),
+    MenuItem(title: 'Khóa Học', route: '/course', icon: Icons.dashboard),
+    // MenuItem(
+    //   title: 'Top Level',
+    //   icon: Icons.file_copy,
+    //   children: [
+    //     MenuItem(
+    //       title: 'Second Level Item 1',
+    //       route: '/secondLevelItem1',
+    //     ),
+    //     MenuItem(
+    //       title: 'Second Level Item 2',
+    //       route: '/secondLevelItem2',
+    //     ),
+    //     MenuItem(
+    //       title: 'Third Level',
+    //       children: [
+    //         MenuItem(
+    //           title: 'Third Level Item 1',
+    //           route: '/thirdLevelItem1',
+    //         ),
+    //         MenuItem(
+    //           title: 'Third Level Item 2',
+    //           route: '/thirdLevelItem2',
+    //           icon: Icons.image,
+    //         ),
+    //       ],
+    //     ),
+    //   ],
+    // ),
   ];
 
   final List<MenuItem> _adminMenuItems = const [
@@ -165,7 +165,7 @@ class MyScaffold extends StatelessWidget {
     return AdminScaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('VGM LMS 2'),
+        title: const Text('VGM LMS'),
         actions: [
           PopupMenuButton(
             child: const Icon(Icons.account_circle),
@@ -221,19 +221,19 @@ class MyScaffold extends StatelessWidget {
             Navigator.of(context).pushNamed(item.route);
           }
         },
-        header: Container(
-          height: 50,
-          width: double.infinity,
-          color: Colors.black26,
-          child: Center(
-            child: Text(
-              'header',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
+        // header: Container(
+        //   height: 50,
+        //   width: double.infinity,
+        //   color: Colors.black26,
+        //   child: Center(
+        //     child: Text(
+        //       'header',
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         footer: Container(
           height: 50,
           width: double.infinity,
