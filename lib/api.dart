@@ -10,8 +10,8 @@ import 'package:canvas_lms/model/CalendarEvent.dart';
 class HttpService {
   //HTTP fech data
   static const String token =
-      '2429~jSPYvbtjnCFXx6tOMjKJ96HoflZGjX23nUkoI0mIND2wO1Rx34q3rrWQrPzJ3VfI';
-  static const String domain = 'masters.instructure.com';
+      '7~xhA9tZRo6uGx2wJrogblqOVlZlatnT0sWi2yP8391iBjcQxgtQFXzvoXMpEDe4Gl';
+  static const String domain = 'canvas.instructure.com';
   var header = {
     HttpHeaders.authorizationHeader: 'Bearer $token',
     HttpHeaders.contentTypeHeader: 'application/json',

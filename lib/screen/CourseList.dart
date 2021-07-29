@@ -33,11 +33,11 @@ class CourseList extends StatelessWidget {
                   style: TextStyle(fontSize: 8.0.sp),
                   overflow: TextOverflow.ellipsis,
                 ),
-                subtitle: Text(
-                  item.term,
-                  style: TextStyle(fontSize: 5.0.sp),
-                  overflow: TextOverflow.ellipsis,
-                ),
+                // subtitle: Text(
+                //   item.term,
+                //   style: TextStyle(fontSize: 5.0.sp),
+                //   overflow: TextOverflow.ellipsis,
+                // ),
               ),
             ],
           )),
