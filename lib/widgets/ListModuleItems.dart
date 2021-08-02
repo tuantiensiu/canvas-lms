@@ -10,7 +10,7 @@ class ListModuleItems extends StatelessWidget {
     return ListTile(
         title: Text(item.title),
         // subtitle: Text('KKKK'),
-        leading: Icon(Icons.location_city),
+        leading: Icon(Icons.description_outlined),
         onTap: () {
           Navigator.push(
             context,

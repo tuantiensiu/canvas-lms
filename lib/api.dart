@@ -80,14 +80,14 @@ class HttpService {
   Future<List<ModuleItems>> getListModuleItem(
       int courseId, int moduleId) async {
     final res = await http.get(
-      Uri.https(domain, '/api/v1/courses/$courseId/modules/$moduleId'),
+      Uri.https(domain, '/api/v1/courses/$courseId/modules/$moduleId/items'),
       headers: header,
     );
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
       List<ModuleItems> data = body
           .map(
-            (dynamic itemModule) => ModuleItems.fromJson(itemModule),
+            (dynamic item) => ModuleItems.fromJson(item),
           )
           .toList();
       return data;

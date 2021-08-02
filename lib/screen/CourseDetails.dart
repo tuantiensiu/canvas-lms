@@ -51,7 +51,8 @@ class CourseDetails extends StatelessWidget {
                       Column(
                         children: modules
                             .map(
-                              (Modules) => ListModule(item: Modules),
+                              (Modules) =>
+                                  ListModule(item: Modules, courseId: item),
                             )
                             .toList(),
                       ),
