@@ -1,5 +1,5 @@
 // import 'package:canvas_lms/model/Course.dart'i
-import 'package:canvas_lms/model/Dashboard.dart';
+import 'package:canvas_lms/modal/Dashboard.dart';
 import 'package:canvas_lms/screen/CourseDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';

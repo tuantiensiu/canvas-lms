@@ -1,8 +1,8 @@
 import 'package:canvas_lms/api.dart';
-import 'package:canvas_lms/model/CalendarEvent.dart';
-import 'package:canvas_lms/model/Dashboard.dart';
-import 'package:canvas_lms/model/ModuleItems.dart';
-import 'package:canvas_lms/model/Modules.dart';
+import 'package:canvas_lms/modal/CalendarEvent.dart';
+import 'package:canvas_lms/modal/Dashboard.dart';
+import 'package:canvas_lms/modal/ModuleItems.dart';
+import 'package:canvas_lms/modal/Modules.dart';
 import 'package:canvas_lms/widgets/ListModuleItems.dart';
 import 'package:flutter/material.dart';
 

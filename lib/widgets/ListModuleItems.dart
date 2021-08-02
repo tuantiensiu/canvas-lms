@@ -1,4 +1,5 @@
-import 'package:canvas_lms/model/ModuleItems.dart';
+import 'package:canvas_lms/modal/ModuleItems.dart';
+import 'package:canvas_lms/screen/ModuleDetail.dart';
 import 'package:flutter/material.dart';
 
 class ListModuleItems extends StatelessWidget {
@@ -9,21 +10,19 @@ class ListModuleItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         title: Text(item.title),
-        // subtitle: Text('KKKK'),
         leading: Icon(Icons.description_outlined),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) => FullScreenDialog(),
-              fullscreenDialog: true,
-            ),
-          );
           // Navigator.push(
           //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => ModuleDetail()),
+          //   MaterialPageRoute<void>(
+          //     builder: (BuildContext context) => FullScreenDialog(),
+          //     fullscreenDialog: true,
+          //   ),
           // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ModuleDetail(this.item)),
+          );
         });
   }
 }

@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:canvas_lms/model/Dashboard.dart';
-import 'package:canvas_lms/model/ModuleItems.dart';
-import 'package:canvas_lms/model/Modules.dart';
+import 'package:canvas_lms/modal/Dashboard.dart';
+import 'package:canvas_lms/modal/ModuleItems.dart';
+import 'package:canvas_lms/modal/Modules.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
-import 'package:canvas_lms/model/CalendarEvent.dart';
+import 'package:canvas_lms/modal/CalendarEvent.dart';
 
 class HttpService {
   //HTTP fech data
