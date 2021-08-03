@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:canvas_lms/modal/Dashboard.dart';
+import 'package:canvas_lms/modal/DetailPage.dart';
 import 'package:canvas_lms/modal/ModuleItems.dart';
 import 'package:canvas_lms/modal/Modules.dart';
 import 'package:http/http.dart' as http;
@@ -93,6 +94,18 @@ class HttpService {
       return data;
     } else {
       throw "Failed to load list modules item";
+    }
+  }
+
+  Future<DetailPage> getPageModule(String url) async {
+    final res = await http.get(
+      Uri.parse(url),
+      headers: header,
+    );
+    if (res.statusCode == 200) {
+      return DetailPage.fromJson(jsonDecode(res.body));
+    } else {
+      throw "Failed to load getPageModule";
     }
   }
 }

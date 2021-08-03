@@ -1,9 +1,10 @@
 import 'package:canvas_lms/modal/ModuleItems.dart';
+import 'package:canvas_lms/widgets/ModulePageDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ModuleDetail extends StatelessWidget {
-  final ModuleItems item;
+  ModuleItems item;
   ModuleDetail(this.item);
 
   @override
@@ -21,6 +22,7 @@ class ModuleDetail extends StatelessWidget {
             children: <Widget>[
               Text(item.title, style: TextStyle(fontSize: 12.0.sp)),
               Divider(),
+              ModulePageDetail(url: item.url)
             ],
           )),
     );
