@@ -21,7 +21,7 @@ class ListModuleItems extends StatelessWidget {
           // );
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ModuleDetail(this.item)),
+            MaterialPageRoute(builder: (context) => ModuleDetail(item)),
           );
         });
   }

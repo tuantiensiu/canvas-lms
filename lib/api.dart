@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:canvas_lms/modal/Dashboard.dart';
+import 'package:canvas_lms/modal/DetailAsignment.dart';
+import 'package:canvas_lms/modal/DetailFile.dart';
 import 'package:canvas_lms/modal/DetailPage.dart';
 import 'package:canvas_lms/modal/ModuleItems.dart';
 import 'package:canvas_lms/modal/Modules.dart';
@@ -106,6 +108,30 @@ class HttpService {
       return DetailPage.fromJson(jsonDecode(res.body));
     } else {
       throw "Failed to load getPageModule";
+    }
+  }
+
+  Future<DetailAsignment> getAsignmentModule(String url) async {
+    final res = await http.get(
+      Uri.parse(url),
+      headers: header,
+    );
+    if (res.statusCode == 200) {
+      return DetailAsignment.fromJson(jsonDecode(res.body));
+    } else {
+      throw "Failed to load getAsignmentModule";
+    }
+  }
+
+  Future<DetailFile> getFileModule(String url) async {
+    final res = await http.get(
+      Uri.parse(url),
+      headers: header,
+    );
+    if (res.statusCode == 200) {
+      return DetailFile.fromJson(jsonDecode(res.body));
+    } else {
+      throw "Failed to load DetailFile";
     }
   }
 }
