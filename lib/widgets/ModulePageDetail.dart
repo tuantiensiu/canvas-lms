@@ -2,7 +2,7 @@ import 'package:canvas_lms/api.dart';
 import 'package:canvas_lms/modal/DetailPage.dart';
 import 'package:canvas_lms/modal/ModuleItems.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class ModulePageDetail extends StatefulWidget {
   final String url;
