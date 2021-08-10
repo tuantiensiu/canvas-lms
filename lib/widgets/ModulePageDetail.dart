@@ -30,7 +30,17 @@ class _ModulePageDetailState extends State<ModulePageDetail> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(
-            child: HtmlWidget("${snapshot.data.body}"),
+            padding: EdgeInsets.all(10.0),
+            child: HtmlWidget(
+              // "${snapshot.data.body}",
+              '''
+                 <video width="320" height="240" controls>
+                  <source src="assets/videos/chuongtrinhnhom7.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              ''',
+              webView: true,
+            ),
           );
         } else {
           return Center(child: CircularProgressIndicator());
